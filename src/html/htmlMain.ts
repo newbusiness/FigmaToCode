@@ -15,6 +15,7 @@ import { indentString } from "../common/indentString";
 let parentId = "";
 
 let showLayerName = false;
+let minimalExport = true; // just divs etc
 
 const selfClosingTags = ["img"];
 
@@ -103,21 +104,29 @@ export const htmlBuilder = (
   isJsx: boolean,
   isUI: boolean = false
 ): [HtmlTextBuilder, string] => {
-  const builderResult = new HtmlTextBuilder(node, showLayerName, isJsx)
-    .blend(node)
-    .textAutoSize(node)
-    .position(node, parentId)
-    // todo fontFamily (via node.fontName !== figma.mixed ? `fontFamily: ${node.fontName.family}`)
-    // todo font smoothing
-    .fontSize(node, isUI)
-    .fontStyle(node)
-    .letterSpacing(node)
-    .lineHeight(node)
-    .textDecoration(node)
-    // todo text lists (<li>)
-    .textAlign(node)
-    .customColor(node.fills, "text")
-    .textTransform(node);
+
+  let builderResult;
+
+  if(minimalExport) {
+    builderResult = new HtmlTextBuilder(node, showLayerName, isJsx)
+  }
+  else {
+    builderResult = new HtmlTextBuilder(node, showLayerName, isJsx)
+      .blend(node)
+      .textAutoSize(node)
+      .position(node, parentId)
+      // todo fontFamily (via node.fontName !== figma.mixed ? `fontFamily: ${node.fontName.family}`)
+      // todo font smoothing
+      .fontSize(node, isUI)
+      .fontStyle(node)
+      .letterSpacing(node)
+      .lineHeight(node)
+      .textDecoration(node)
+      // todo text lists (<li>)
+      .textAlign(node)
+      .customColor(node.fills, "text")
+      .textTransform(node);
+  }
 
   const splittedChars = node.characters.split("\n");
   const charsWithLineBreak =

@@ -1,8 +1,6 @@
 <script>
   import { fade, fly } from "svelte/transition";
-
   import { Tabs, Tab, TabList, TabPanel } from "./svelte-tabs/index";
-
   import copy from "clipboard-copy";
 
   function delay(ms) {
@@ -23,12 +21,12 @@
   //use bind:group, with a var to create a radio group and store the value of selected item
   //set value if this var to same value as radio item to set initial selection
   var switchValue;
+  import ScreenBootstrap from "./ScreenBootstrap.svelte";
   import ScreenTailwind from "./ScreenTailwind.svelte";
   import ScreenFlutter from "./ScreenFlutter.svelte";
   import ScreenSwiftUI from "./ScreenSwiftUI.svelte";
   import ScreenHTML from "./ScreenHtml.svelte";
   import ScreenAbout from "./ScreenAbout.svelte";
-
   import { GlobalCSS } from "figma-plugin-ds-svelte";
 </script>
 
@@ -41,12 +39,17 @@
 <Tabs>
 
   <TabList>
+    <Tab>Bootstrap 5</Tab>
     <Tab>Tailwind 2</Tab>
     <Tab>Flutter</Tab>
     <Tab>SwiftUI</Tab>
     <Tab>HTML</Tab>
     <Tab>About</Tab>
   </TabList>
+
+  <TabPanel>
+    <ScreenBootstrap on:clipboard={updateClipboard} />
+  </TabPanel>
 
   <TabPanel>
     <ScreenTailwind on:clipboard={updateClipboard} />

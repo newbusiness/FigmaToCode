@@ -74,7 +74,8 @@
   <p class="text-xl font-bold text-center text-white">Figma to Code</p>
   <div class="h-2" />
   <p class="font-semibold text-center text-white text-base">
-    Designed and developed by Bernardo Ferrari.
+    Designed and developed by Bernardo Ferrari.<br/>
+    Code Forked and Bootstrap added by newbusiness
   </p>
   <div class="h-4" />
   <div class="flex content-center justify-center space-x-4">
@@ -194,12 +195,22 @@
       </button>
     </a>
   </div>
-  <div class="flex justify-center mt-2 text-white">
-    <a
-      class="px-4 py-2 text-xs text-center text-white"
-      href="https://github.com/bernaferrari/FigmaToCode"
-      target="_blank">
-      This project is open source and has no tracking.
-    </a>
+  <div class="flex justify-center">
+    <div class="flex justify-center mt-2 text-white">
+      <a
+        class="px-4 py-2 text-xs text-center text-white"
+        href="https://github.com/bernaferrari/FigmaToCode"
+        target="_blank">
+        GitHub - Original
+      </a>
+    </div>
+    <div class="flex justify-center mt-2 text-white">
+      <a
+        class="px-4 py-2 text-xs text-center text-white"
+        href="https://github.com/newbusiness/FigmaToCode"
+        target="_blank">
+        GitHub - +Bootstrap5
+      </a>
+    </div>
   </div>
 </div>

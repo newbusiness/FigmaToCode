@@ -77,6 +77,7 @@ export const convertIntoAltNodes = (
 ): Array<AltSceneNode> => {
   const mapped: Array<AltSceneNode | null> = sceneNode.map(
     (node: SceneNode) => {
+      
       if (node.type === "RECTANGLE" || node.type === "ELLIPSE") {
         let altNode;
         if (node.type === "RECTANGLE") {

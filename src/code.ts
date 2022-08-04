@@ -6,6 +6,7 @@ import {
 import { htmlMain } from "./html/htmlMain";
 import { swiftuiMain } from "./swiftui/swiftuiMain";
 import { tailwindMain } from "./tailwind/tailwindMain";
+import { bootstrapMain } from "./bootstrap5/bootstrapMain";
 import { flutterMain } from "./flutter/flutterMain";
 import { convertIntoAltNodes } from "./altNodes/altConversion";
 
@@ -14,9 +15,9 @@ let isJsx = false;
 let layerName = false;
 let material = true;
 
-let mode: "flutter" | "swiftui" | "html" | "tailwind";
+let mode: "flutter" | "swiftui" | "html" | "tailwind" | "bootstrap";
 
-figma.showUI(__html__, { width: 450, height: 550 });
+figma.showUI(__html__, { width: 650, height: 650 });
 
 const run = () => {
   // ignore when nothing was selected
@@ -44,8 +45,10 @@ const run = () => {
     result = flutterMain(convertedSelection, parentId, material);
   } else if (mode === "tailwind") {
     result = tailwindMain(convertedSelection, parentId, isJsx, layerName);
-  } else if (mode === "swiftui") {
-    result = swiftuiMain(convertedSelection, parentId);
+  } else if (mode === "bootstrap") {
+    result = bootstrapMain(convertedSelection, parentId, isJsx, layerName);
+  /*} else if (mode === "swiftui") {
+    result = swiftuiMain(convertedSelection, parentId);*/
   } else if (mode === "html") {
     result = htmlMain(convertedSelection, parentId, isJsx, layerName);
   }
@@ -60,6 +63,7 @@ const run = () => {
   if (
     mode === "tailwind" ||
     mode === "flutter" ||
+    mode === "bootstrap" ||
     mode === "html" ||
     mode === "swiftui"
   ) {
@@ -91,6 +95,7 @@ figma.ui.onmessage = (msg) => {
   if (
     msg.type === "tailwind" ||
     msg.type === "flutter" ||
+    msg.type === "bootstrap" ||
     msg.type === "swiftui" ||
     msg.type === "html"
   ) {

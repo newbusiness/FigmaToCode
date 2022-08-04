@@ -1,6 +1,6 @@
 import { AltSceneNode } from "../../altNodes/altMixins";
 
-export type exportFramework = "flutter" | "swiftui" | "html" | "tailwind";
+export type exportFramework = "flutter" | "swiftui" | "html" | "tailwind" | "bootstrap";
 
 // from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
 export const calculateContrastRatio = (color1: RGB, color2: RGB): number => {
