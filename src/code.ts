@@ -53,7 +53,7 @@ const run = () => {
     result = htmlMain(convertedSelection, parentId, isJsx, layerName);
   }
 
-  console.log(result);
+  //console.log(result);
 
   figma.ui.postMessage({
     type: "result",

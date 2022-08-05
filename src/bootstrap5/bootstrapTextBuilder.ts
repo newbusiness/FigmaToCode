@@ -25,6 +25,32 @@ export class BootstrapTextBuilder extends BootstrapDefaultBuilder {
     return this;
   }
 
+  tryGetGlobalStyleFromFont(thisStyle: AltTextNode) {
+    const textStyles = figma.getLocalTextStyles(); // this gets styles with names .. e.g. "desktop-h1"
+
+    //console.log("Looking for match for:" + thisStyle.name + ", got " + textStyles.length + " inbuilt styles to check against");
+    const searchId = thisStyle.textStyleId;
+    for (let i = 0; i < textStyles.length; i++) {
+      //console.log(style.name + ": " +style.description + ", " + style.id + ", incoming: ", thisStyle.textStyleId)
+      const style = textStyles[i];
+      const thisId = style.id;
+      if (thisId === searchId) {
+        const name = style.name
+          .toLowerCase()
+          .replace("mobile/", "") // sorry, specific to our implementation of "Desktop/H1", or "Mobile/H1"
+          .replace("desktop/", "")
+          .replace("body", "")
+          .replace("bold", "fw-bold")
+          .trim(); 
+
+        //console.log(`Got matching font ${name}`);
+        
+        return name;
+      }
+    }
+    return "";
+  }
+
   // todo fontFamily
   //  fontFamily(node: AltTextNode): this {
   //    return this;
@@ -39,18 +65,24 @@ export class BootstrapTextBuilder extends BootstrapDefaultBuilder {
     // example: text-md
     if (node.fontSize !== figma.mixed) {
       const value = pxToFontSize(node.fontSize);
-      if(value != "")
+      if (value != "")
         this.attributes += `fs-${value} `;
     }
-
     return this;
   }
 
   fontSizeCustom(node: AltTextNode): this {
     // example: text-md
     if (node.fontName !== figma.mixed) {
-      // ==> fn-plus-jakarta sans fs-12 fw-medium
-      this.attributes += this.fontStyleText(node);
+
+      // Look for matching 
+      const matchedStyleName = this.tryGetGlobalStyleFromFont(node);
+      if (matchedStyleName === "") {
+        this.attributes += this.fontStyleText(node);
+      }
+      else {
+        this.attributes = `${matchedStyleName} `;
+      }
       //const value = pxToFontSize(node.fontSize);
       //this.attributes += `fs-px-${node.fontSize.toString()} fs-bs-${value} `;
       //this.attributes += `fn-${node.fontName.family.toLowerCase().replace(' ','-')} fspx-${node.fontSize.toString()} `;
@@ -84,11 +116,11 @@ export class BootstrapTextBuilder extends BootstrapDefaultBuilder {
         .replace("regular", "")
         .replace("standard", "")
         .replace(" ", "")
-        .replace("bold","bold")
-        .replace("extrabold","bold");
+        .replace("bold", "bold")
+        .replace("extrabold", "bold");
 
-        if(lowercaseStyle !== "")
-          return `fw-${lowercaseStyle} `;
+      if (lowercaseStyle !== "")
+        return `fw-${lowercaseStyle} `;
     }
     return "";
   }

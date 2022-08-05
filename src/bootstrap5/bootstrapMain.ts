@@ -68,7 +68,7 @@ const bootstrapWidgetGenerator = (
     } else if (node.type === "TEXT") {
       comp += bootstrapText(node, false, isJsx);
     }
-    console.log(node.type + " returned " + comp.substring(0,10) +"..." );
+    //console.log(node.type + " returned " + comp.substring(0,10) +"..." );
 
   });
 

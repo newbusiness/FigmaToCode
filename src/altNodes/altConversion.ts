@@ -379,6 +379,7 @@ const convertIntoAltText = (altNode: AltTextNode, node: TextNode) => {
   altNode.textDecoration = node.textDecoration;
   altNode.letterSpacing = node.letterSpacing;
   altNode.textAutoResize = node.textAutoResize;
+  altNode.textStyleId = node.textStyleId;
   altNode.characters = node.characters;
   altNode.lineHeight = node.lineHeight;
 };

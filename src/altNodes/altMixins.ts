@@ -141,6 +141,8 @@ interface AltTextMixin {
   textDecoration: TextDecoration | PluginAPI["mixed"];
   letterSpacing: LetterSpacing | PluginAPI["mixed"];
   lineHeight: LineHeight | PluginAPI["mixed"];
+
+  textStyleId: string | PluginAPI["mixed"];
 }
 
 export interface AltTextNode
