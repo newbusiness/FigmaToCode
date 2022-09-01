@@ -262,7 +262,7 @@ export const rowColumnProps = (node: AltFrameNode): string => {
     return '.';
   }
 
-  const rowOrColumn = node.layoutMode === "HORIZONTAL" ? "" : "column "; // SB Alias for "flex flex-cols"
+  const rowOrColumn = node.layoutMode === "HORIZONTAL" ? "d-flex " : "d-flex flex-column "; 
 
   // space between items
   const spacing = node.itemSpacing > 0 ? pxToLayoutSize(node.itemSpacing) : 0;

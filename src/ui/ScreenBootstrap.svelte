@@ -116,11 +116,6 @@
         </button>
       </div>
 
-      <div class="w-full pt-2 text-sm ">
-          .flex  &lbrace; display: flex; &rbrace; /* alias for d-flex */<br/>       
-          .column &lbrace; display: flex; flex-direction: column; &rbrace; /* alias for "d-flex flex-cols" */<br/>
-      </div>
-
       <Prism language="html" source={codeObservable} />
 
     </div>
